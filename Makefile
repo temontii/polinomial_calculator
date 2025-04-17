@@ -1,16 +1,12 @@
-# Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -g
 LDFLAGS = -lm
 
-# Source files
 SRCS = main.c ui.c Polynomial.c Integer.c Complex.c tests.c
 OBJS = $(SRCS:.c=.o)
 
-# Executable name
 TARGET = polynomial_calculator
 
-# Header files
 HEADERS = ui.h Polynomial.h Integer.h Complex.h TypeInfo.h PolynomialDefines.h tests.h
 
 .PHONY: all clean
