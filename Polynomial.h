@@ -3,6 +3,7 @@
 
 #include "TypeInfo.h"
 #include "PolynomialDefines.h"
+#include <stdbool.h> 
 
 typedef struct {
     void** coefficients;
@@ -17,6 +18,8 @@ PolynomialError poly_add(const Polynomial*, const Polynomial*, Polynomial*);
 PolynomialError poly_multiply(const Polynomial*, const Polynomial*, Polynomial*);
 PolynomialError poly_scalar_multiply(const Polynomial*, const void*, Polynomial*);
 PolynomialError poly_evaluate(const Polynomial*, const void*, void*);
+PolynomialError poly_compare(const Polynomial*, const Polynomial*);
 void poly_print(const Polynomial*);
+bool poly_is_equal(const Polynomial* a, const Polynomial* b);
 
 #endif
