@@ -1,10 +1,11 @@
 #include "Polynomial.h"
 #include "Integer.h"
 #include "Complex.h"
-#include "PolynomialDefines.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
+#include <stdbool.h> 
 
 Polynomial* poly_create(TypeInfo* typeInfo, int degree, PolynomialError* err) {
     if (!typeInfo) {
@@ -46,6 +47,25 @@ Polynomial* poly_create(TypeInfo* typeInfo, int degree, PolynomialError* err) {
     poly->typeInfo = typeInfo;
     if (err) *err = POLYNOMIAL_OK;
     return poly;
+}
+
+bool poly_is_equal(const Polynomial* a, const Polynomial* b) {
+    if (!a || !b) return false;
+
+    if (a->degree != b->degree || a->typeInfo != b->typeInfo) return false;
+
+    // Сравниваем коэффициенты
+    for (int i = 0; i <= a->degree; i++) {
+        if (a->typeInfo == GetIntTypeInfo()) {
+            if (*(int*)a->coefficients[i] != *(int*)b->coefficients[i]) return false;
+        } else if (a->typeInfo == GetComplexTypeInfo()) {
+            const Complex* ca = a->coefficients[i];
+            const Complex* cb = b->coefficients[i];
+            if (fabs(ca->real - cb->real) > 1e-6 || fabs(ca->imag - cb->imag) > 1e-6) return false;
+        }
+    }
+
+    return true;
 }
 
 Polynomial* poly_create_with_coeffs(TypeInfo* typeInfo, int degree, const void* coeffs, PolynomialError* err) {
