@@ -44,10 +44,8 @@ void test_complex_poly_addition() {
     err = poly_add(p1, p2, sum);
     assert(err == POLYNOMIAL_OK);
 
-    // Создаем полином с ожидаемыми результатами
     Polynomial* expectedPoly = poly_create_with_coeffs(GetComplexTypeInfo(), 1, expected, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedPoly, sum)) {
         printf("Test FAILED:\n");
     } else {
@@ -79,17 +77,14 @@ void test_poly_multiplication() {
     err = poly_multiply(p1, p2, prod);
     assert(err == POLYNOMIAL_OK);
 
-    // Создаем полином с ожидаемыми результатами
     Polynomial* expectedPoly = poly_create_with_coeffs(GetIntTypeInfo(), 2, expected, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedPoly, prod)) {
         printf("Test FAILED:\n");
     } else {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат всегда
     printf("Expected Result: "); poly_print(expectedPoly); printf("\n");
     printf("Actual Result: "); poly_print(prod); printf("\n");
 
@@ -114,17 +109,14 @@ void test_scalar_multiplication() {
     err = poly_scalar_multiply(ipoly, &iscalar, iresult);
     assert(err == POLYNOMIAL_OK);
 
-    // Создаем полином с ожидаемыми результатами
     Polynomial* expectedPoly = poly_create_with_coeffs(GetIntTypeInfo(), 2, iexpected, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedPoly, iresult)) {
         printf("Test FAILED:\n");
     } else {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат всегда
     printf("Expected Result: "); poly_print(expectedPoly); printf("\n");
     printf("Actual Result: "); poly_print(iresult); printf("\n");
 
@@ -138,17 +130,14 @@ void test_scalar_multiplication() {
     err = poly_scalar_multiply(cpoly, &cscalar, cresult);
     assert(err == POLYNOMIAL_OK);
 
-    // Создаем полином с ожидаемыми результатами
     Polynomial* expectedCPoly = poly_create_with_coeffs(GetComplexTypeInfo(), 1, cexpected, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedCPoly, cresult)) {
         printf("Test FAILED:\n");
     } else {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат всегда
     printf("Expected Result: "); poly_print(expectedCPoly); printf("\n");
     printf("Actual Result: "); poly_print(cresult); printf("\n");
 
@@ -188,9 +177,9 @@ void test_poly_evaluation() {
 
     poly_free(ipoly);
     poly_free(cpoly);
-    printf("Test PASSED:\n");  // Прямо здесь указываем, что тест пройден
-    printf("Expected Result: (%d)\n", iexpected);  // Выводим ожидаемый результат
-    printf("Actual Result: (%d)\n", iresult);      // Выводим фактический результат
+    printf("Test PASSED:\n"); 
+    printf("Expected Result: (%d)\n", iexpected); 
+    printf("Actual Result: (%d)\n", iresult);
     printf("\n");
 }
 
@@ -218,7 +207,6 @@ void test_zero_and_minimal_polynomials() {
     assert(err == POLYNOMIAL_OK);
     assert(*(int*)sum->coefficients[0] == 1); 
 
-    // Выводим ожидаемый и фактический результат
     printf("Expected Result: "); poly_print(onePolyI); printf("\n");
     printf("Actual Result: "); poly_print(sum); printf("\n");
 
@@ -243,18 +231,15 @@ void test_large_numbers_and_high_degrees() {
     err = poly_scalar_multiply(bigPoly, &bigScalar, scaledBigPoly);
     assert(err == POLYNOMIAL_OK);
 
-    // Создаем полином с ожидаемыми результатами
     int expectedBigCoeffs[] = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000};
     Polynomial* expectedScaledPoly = poly_create_with_coeffs(GetIntTypeInfo(), 9, expectedBigCoeffs, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedScaledPoly, scaledBigPoly)) {
         printf("Test FAILED:\n");
     } else {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат
     printf("Expected Result: "); poly_print(expectedScaledPoly); printf("\n");
     printf("Actual Result: "); poly_print(scaledBigPoly); printf("\n");
 
@@ -280,18 +265,15 @@ void test_diff_size_polynomials() {
     assert(*(int*)sum->coefficients[1] == 6);
     assert(*(int*)sum->coefficients[2] == 5);
 
-    // Создаем полином с ожидаемыми результатами
     int expectedDiffSizeCoeffs[] = {4, 6, 5};
     Polynomial* expectedSumPoly = poly_create_with_coeffs(GetIntTypeInfo(), 2, expectedDiffSizeCoeffs, &err);
 
-    // Проверяем равенство полиномов
     if (!poly_is_equal(expectedSumPoly, sum)) {
         printf("Test FAILED:\n");
     } else {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат
     printf("Expected Result: "); poly_print(expectedSumPoly); printf("\n");
     printf("Actual Result: "); poly_print(sum); printf("\n");
 
