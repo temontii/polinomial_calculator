@@ -54,7 +54,6 @@ bool poly_is_equal(const Polynomial* a, const Polynomial* b) {
 
     if (a->degree != b->degree || a->typeInfo != b->typeInfo) return false;
 
-    // Сравниваем коэффициенты
     for (int i = 0; i <= a->degree; i++) {
         if (a->typeInfo == GetIntTypeInfo()) {
             if (*(int*)a->coefficients[i] != *(int*)b->coefficients[i]) return false;
