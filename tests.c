@@ -52,7 +52,6 @@ void test_complex_poly_addition() {
         printf("Test PASSED:\n");
     }
 
-    // Выводим ожидаемый и фактический результат всегда
     printf("Expected Result: "); poly_print(expectedPoly); printf("\n");
     printf("Actual Result: "); poly_print(sum); printf("\n");
 
